@@ -20,15 +20,34 @@ class MainActivity : AppCompatActivity() {
 
         ivPiano.setOnTouchListener {
                 _, event ->
-            val x = event.x
-            val y = event.y
-            var note = (x.toInt())*14/(ivPiano.width.toInt())
-            tvY.text = note.toString()
-            tvX.text = Notes(note).toString()
+            handleTouch(event)
             true
         }
 
 
+    }
+    
+        private fun handleTouch(m: MotionEvent) {
+        val pointerCount = m.pointerCount
+
+        for (i in 0 until pointerCount) {
+            val x = m.getX(i)
+            val y = m.getY(i)
+            val id = m.getPointerId(i)
+
+            var note = (x.toInt())*14/(ivPiano.width.toInt())
+
+            if (id == 0){
+                tvY.text = note.toString()
+                tvX.text = Notes(note).toString()
+            }else if (id == 1){
+                tvY.text = note.toString()
+                tvX.text = Notes(note).toString()
+            }else if (id == 2){
+                tvY.text = note.toString()
+                tvX.text = Notes(note).toString()
+            }
+        }
     }
 
 
