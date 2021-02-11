@@ -1,21 +1,27 @@
 package com.example.appinterfacesembarquees
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
 
 
-
+    lateinit var ivPiano: ImageView
+    lateinit var tvX: TextView
+    lateinit var tvY: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val ivPiano = findViewById<ImageView>(R.id.ivPiano)
-        val tvX = findViewById<TextView>(R.id.tvX)
-        val tvY = findViewById<TextView>(R.id.tvY)
+        ivPiano = findViewById<ImageView>(R.id.ivPiano)
+        tvX = findViewById<TextView>(R.id.tvX)
+        tvY = findViewById<TextView>(R.id.tvY)
 
 
         ivPiano.setOnTouchListener {
@@ -26,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    
+
         private fun handleTouch(m: MotionEvent) {
         val pointerCount = m.pointerCount
 
@@ -39,13 +45,62 @@ class MainActivity : AppCompatActivity() {
 
             if (id == 0){
                 tvY.text = note.toString()
+                var nomNote = Notes(note).toString()
                 tvX.text = Notes(note).toString()
+                when(nomNote){
+                    "Fa" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    "Sol" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    "La" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    else -> {}
+                }
+
             }else if (id == 1){
                 tvY.text = note.toString()
+                var nomNote = Notes(note).toString()
                 tvX.text = Notes(note).toString()
+                when(nomNote){
+                    "Fa" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    "Sol" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    "La" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    else -> {}
+                }
             }else if (id == 2){
                 tvY.text = note.toString()
+                var nomNote = Notes(note).toString()
                 tvX.text = Notes(note).toString()
+                when(nomNote){
+                    "Fa" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    "Sol" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    "La" ->{
+                        var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
+                        mediaPlayer.start() // no need to call prepare(); create() does that for you
+                    }
+                    else -> {}
+                }
             }
         }
     }
