@@ -29,7 +29,7 @@
 
     <ImageView
         android:id="@+id/ivPiano"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +37,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvX"
         app:srcCompat="@drawable/piano" />
+
+    <ImageView
+        android:id="@+id/ivFa1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/fa1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
