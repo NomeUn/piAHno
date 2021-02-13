@@ -28,6 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:background="@drawable/ic_launcher_background"
         android:id="@+id/ivPiano"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -42,13 +43,155 @@
         android:id="@+id/ivFa1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="invisible"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ivPiano"
         app:srcCompat="@drawable/fa1" />
+
+    <ImageView
+        android:id="@+id/ivSol1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/sol1" />
+
+    <ImageView
+        android:id="@+id/ivSi1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/si1" />
+
+    <ImageView
+        android:id="@+id/ivDo1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/do1"/>
+
+    <ImageView
+        android:id="@+id/ivLa1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/la1" />
+
+    <ImageView
+        android:id="@+id/ivRe1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/re1"/>
+
+    <ImageView
+        android:id="@+id/ivMi1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/mi1" />
+
+    <ImageView
+        android:id="@+id/ivFa2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/fa2"/>
+
+    <ImageView
+        android:id="@+id/ivSol2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/sol2"/>
+
+    <ImageView
+        android:id="@+id/ivLa2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/la2"/>
+
+    <ImageView
+        android:id="@+id/ivSi2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/si2"/>
+
+    <ImageView
+        android:id="@+id/ivDo2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/do2"/>
+
+    <ImageView
+        android:id="@+id/ivRe2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/re2"/>
+
+    <ImageView
+        android:id="@+id/ivMi2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:srcCompat="@drawable/mi2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
