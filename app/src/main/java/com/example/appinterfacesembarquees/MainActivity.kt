@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import java.lang.Thread.sleep
@@ -76,6 +78,14 @@ class MainActivity : AppCompatActivity() {
                 _, event ->
             handleTouch(event)
             true
+        }
+
+        val instruments = resources.getStringArray(R.array.Instruments)
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        if (spinner != null) {
+            val adapter = ArrayAdapter(this,
+                    android.R.layout.simple_spinner_item, instruments)
+            spinner.adapter = adapter
         }
     }
 

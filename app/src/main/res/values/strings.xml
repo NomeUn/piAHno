@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">app interfaces embarquees</string>
+
+    <string-array name="Instruments">
+        <item>Piano</item>
+        <item>Guitare</item>
+        <item>Trompette</item>
+        <item>Violon</item>
+        <item>Saxophone</item>
+        <item>UKULELE !!!</item>
+    </string-array>
 </resources>
