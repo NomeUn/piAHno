@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var ivMi2: ImageView
     lateinit var tvX: TextView
     lateinit var tvY: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
@@ -94,8 +95,8 @@ class MainActivity : AppCompatActivity() {
                     tvX.text = Notes(note).toString()
                     when (nomNote) {
                         "Fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
+                            mediaPlayer.start()
                             ivFa1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -104,8 +105,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol1)
+                            mediaPlayer.start()
                             ivSol1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -113,8 +114,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "La" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.la1)
+                            mediaPlayer.start()
                             ivLa1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -122,8 +123,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Si" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
+                            mediaPlayer.start()
                             ivSi1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -132,8 +133,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Do" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
+                            mediaPlayer.start()
                             ivDo1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -142,8 +143,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Re" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
+                            mediaPlayer.start()
                             ivRe1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -152,8 +153,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Mi" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
+                            mediaPlayer.start()
                             ivMi1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -161,8 +162,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Fa2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
+                            mediaPlayer.start()
                             ivFa2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -170,8 +171,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Sol2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
+                            mediaPlayer.start()
                             ivSol2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -179,8 +180,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "La2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
+                            mediaPlayer.start()
                             ivLa2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -188,8 +189,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Si2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
+                            mediaPlayer.start()
                             ivSi2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -198,8 +199,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Do2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
+                            mediaPlayer.start()
                             ivDo2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -208,8 +209,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Re2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
+                            mediaPlayer.start()
                             ivRe2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -218,8 +219,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Mi2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
+                            mediaPlayer.start()
                             ivMi2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -237,8 +238,8 @@ class MainActivity : AppCompatActivity() {
                     tvX.text = Notes(note).toString()
                     when (nomNote) {
                         "Fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
+                            mediaPlayer.start()
                             ivFa1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -247,8 +248,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol1)
+                            mediaPlayer.start()
                             ivSol1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -256,8 +257,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "La" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.la1)
+                            mediaPlayer.start()
                             ivLa1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -265,8 +266,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Si" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
+                            mediaPlayer.start()
                             ivSi1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -275,8 +276,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Do" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
+                            mediaPlayer.start()
                             ivDo1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -285,8 +286,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Re" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
+                            mediaPlayer.start()
                             ivRe1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -295,8 +296,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Mi" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
+                            mediaPlayer.start()
                             ivMi1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -304,8 +305,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Fa2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
+                            mediaPlayer.start()
                             ivFa2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -313,8 +314,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Sol2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
+                            mediaPlayer.start()
                             ivSol2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -322,8 +323,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "La2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
+                            mediaPlayer.start()
                             ivLa2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -331,8 +332,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Si2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
+                            mediaPlayer.start()
                             ivSi2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -341,8 +342,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Do2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
+                            mediaPlayer.start()
                             ivDo2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -351,8 +352,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Re2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
+                            mediaPlayer.start()
                             ivRe2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -361,8 +362,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Mi2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
+                            mediaPlayer.start()
                             ivMi2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -379,8 +380,8 @@ class MainActivity : AppCompatActivity() {
                     tvX.text = Notes(note).toString()
                     when (nomNote) {
                         "Fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
+                            mediaPlayer.start()
                             ivFa1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -389,8 +390,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol1)
+                            mediaPlayer.start()
                             ivSol1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -398,8 +399,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "La" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.la1)
+                            mediaPlayer.start()
                             ivLa1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -407,8 +408,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Si" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
+                            mediaPlayer.start()
                             ivSi1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -417,8 +418,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Do" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
+                            mediaPlayer.start()
                             ivDo1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -427,8 +428,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Re" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
+                            mediaPlayer.start()
                             ivRe1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -437,8 +438,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Mi" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
+                            mediaPlayer.start()
                             ivMi1.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -446,8 +447,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Fa2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
+                            mediaPlayer.start()
                             ivFa2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -455,8 +456,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Sol2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano110)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
+                            mediaPlayer.start()
                             ivSol2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -464,8 +465,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "La2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano111)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
+                            mediaPlayer.start()
                             ivLa2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -473,8 +474,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         "Si2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
+                            mediaPlayer.start()
                             ivSi2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -483,8 +484,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Do2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
+                            mediaPlayer.start()
                             ivDo2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -493,8 +494,8 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Re2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
+                            mediaPlayer.start()
                             ivRe2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
@@ -503,14 +504,13 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         "Mi2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.piano11)
-                            mediaPlayer.start() // no need to call prepare(); create() does that for you
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
+                            mediaPlayer.start()
                             ivMi2.visibility = View.VISIBLE
                             GlobalScope.launch {
                                 delay(100L)
                                 ivMi2.visibility = View.INVISIBLE
                             }
-
                         }
                     }
                 }
