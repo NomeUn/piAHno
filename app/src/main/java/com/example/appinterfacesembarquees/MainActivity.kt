@@ -91,12 +91,14 @@ class MainActivity : AppCompatActivity() {
         val pointerCount = m.pointerCount
 
             for (i in 0 until pointerCount) {
-                val x = m.getX(i)
-                val y = m.getY(i)
+                val x = m.getX(i).toInt()
+                val y = m.getY(i).toInt()
                 val id = m.getPointerId(i)
+                val pX = ivPiano.width.toInt()
+                val pY = ivPiano.height.toInt()
 
-                var note = (x.toInt()) * 14 / (ivPiano.width.toInt())
-
+                //var note = (x.toInt()) * 14 / (ivPiano.width.toInt())
+                var note = (x, y, pX, pY)
                 if (id == 0) {
                     var nomNote = Notes(note).toString()
                     when (nomNote) {
