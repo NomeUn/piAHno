@@ -1,18 +1,22 @@
 package com.example.appinterfacesembarquees
 
 import android.media.MediaPlayer
+import android.media.MediaRecorder
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import java.lang.Thread.sleep
 import kotlinx.coroutines.*
+import java.io.IOException
+
+
+private const val LOG_TAG = "AudioRecordTest"
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var ivMi2: ImageView
     lateinit var tvX: TextView
     lateinit var tvY: TextView
+    lateinit var btnRec: Button
+    var recorder: MediaRecorder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -71,12 +77,23 @@ class MainActivity : AppCompatActivity() {
         ivMi2 = findViewById<ImageView>(R.id.ivMi2)
         ivMi2.visibility = View.INVISIBLE
 
+        btnRec = findViewById<Button>(R.id.btnRec)
+
 
        ivPiano.setOnTouchListener {
                 _, event ->
             handleTouch(event)
             true
         }
+
+        btnRec.setOnClickListener{
+                _, ->
+
+            var mStartRecording = true
+            onRecord(mStartRecording)
+            mStartRecording = !mStartRecording
+        }
+
 
         val instruments = resources.getStringArray(R.array.Instruments)
         val spinner = findViewById<Spinner>(R.id.spnInstru)
@@ -86,6 +103,39 @@ class MainActivity : AppCompatActivity() {
             spinner.adapter = adapter
         }
     }
+
+    private fun onRecord(start: Boolean) = if (start) {
+        startRecording()
+    } else {
+        stopRecording()
+    }
+
+
+    private fun startRecording() {
+        recorder = MediaRecorder().apply {
+            setAudioSource(MediaRecorder.AudioSource.DEFAULT)
+            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+            setOutputFile("testrecord")
+            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+
+            try {
+                prepare()
+            } catch (e: IOException) {
+                Log.e(LOG_TAG, "prepare() failed")
+            }
+
+            start()
+        }
+    }
+
+    private fun stopRecording() {
+        recorder?.apply {
+            stop()
+            release()
+        }
+        recorder = null
+    }
+
 
     private fun handleTouch(m: MotionEvent) {
         val pointerCount = m.pointerCount
