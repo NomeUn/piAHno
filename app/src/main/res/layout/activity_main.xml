@@ -4,27 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:clickable="true">
+    android:clickable="true"
+    tools:context=".MainActivity">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnTest"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnTest"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-        android:background="@drawable/ic_launcher_background"
         android:id="@+id/ivPiano"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/ic_launcher_background"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:srcCompat="@drawable/piano" />
 
     <ImageView
@@ -35,8 +44,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
-        app:srcCompat="@drawable/fa1" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
+        app:srcCompat="@drawable/fa1"/>
 
     <ImageView
         android:id="@+id/ivSol1"
@@ -46,8 +55,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
-        app:srcCompat="@drawable/sol1" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
+        app:srcCompat="@drawable/sol1"/>
 
     <ImageView
         android:id="@+id/ivSi1"
@@ -57,8 +66,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
-        app:srcCompat="@drawable/si1" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
+        app:srcCompat="@drawable/si1"/>
 
     <ImageView
         android:id="@+id/ivDo1"
@@ -68,7 +77,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:srcCompat="@drawable/do1"/>
 
     <ImageView
@@ -79,8 +88,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
-        app:srcCompat="@drawable/la1" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
+        app:srcCompat="@drawable/la1"/>
 
     <ImageView
         android:id="@+id/ivRe1"
@@ -90,8 +99,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
-        app:srcCompat="@drawable/re1"/>
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
+        app:srcCompat="@drawable/re1" />
 
     <ImageView
         android:id="@+id/ivMi1"
@@ -101,8 +110,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
-        app:srcCompat="@drawable/mi1" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
+        app:srcCompat="@drawable/mi1"/>
 
     <ImageView
         android:id="@+id/ivFa2"
@@ -112,7 +121,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:srcCompat="@drawable/fa2"/>
 
     <ImageView
@@ -123,7 +132,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:srcCompat="@drawable/sol2"/>
 
     <ImageView
@@ -134,7 +143,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:srcCompat="@drawable/la2"/>
 
     <ImageView
@@ -145,7 +154,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:srcCompat="@drawable/si2"/>
 
     <ImageView
@@ -156,7 +165,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:srcCompat="@drawable/do2"/>
 
     <ImageView
@@ -167,7 +176,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:srcCompat="@drawable/re2"/>
 
     <ImageView
@@ -178,10 +187,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivPiano"
-        app:srcCompat="@drawable/mi2" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/btnTest"
+        app:srcCompat="@drawable/mi2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
