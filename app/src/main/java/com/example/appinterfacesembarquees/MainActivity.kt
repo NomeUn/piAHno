@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val instruments = resources.getStringArray(R.array.Instruments)
-        val spinner = findViewById<Spinner>(R.id.spinner)
+        val spinner = findViewById<Spinner>(R.id.spnInstru)
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
                     android.R.layout.simple_spinner_item, instruments)
