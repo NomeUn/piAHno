@@ -7,24 +7,12 @@
     tools:context=".MainActivity"
     android:clickable="true">
 
-    <TextView
-        android:id="@+id/tvX"
-        android:layout_width="0dp"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="X:"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvY"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Y:"
-        android:textColor="@color/black"
-        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -36,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvX"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
         app:srcCompat="@drawable/piano" />
 
     <ImageView
@@ -193,13 +181,7 @@
         app:layout_constraintTop_toTopOf="@+id/ivPiano"
         app:srcCompat="@drawable/mi2" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

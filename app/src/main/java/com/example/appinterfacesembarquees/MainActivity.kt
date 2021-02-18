@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         ivPiano = findViewById<ImageView>(R.id.ivPiano)
-        tvX = findViewById<TextView>(R.id.tvX)
-        tvY = findViewById<TextView>(R.id.tvY)
 
         ivFa1 = findViewById<ImageView>(R.id.ivFa1)
         ivFa1.visibility = View.INVISIBLE
@@ -100,9 +98,7 @@ class MainActivity : AppCompatActivity() {
                 var note = (x.toInt()) * 14 / (ivPiano.width.toInt())
 
                 if (id == 0) {
-                    tvY.text = note.toString()
                     var nomNote = Notes(note).toString()
-                    tvX.text = Notes(note).toString()
                     when (nomNote) {
                         "Fa" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
