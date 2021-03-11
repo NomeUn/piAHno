@@ -1,6 +1,10 @@
 package com.example.appinterfacesembarquees
 
 import android.media.MediaPlayer
+import android.view.View
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class Notes(val x:Int, val y:Int, val pX:Int, val pY:Int){
     val notes = arrayOf("Fa", "FaD", "Sol", "SolD", "La", "LaD", "Si", "Do", "DoD", "Re", "ReD", "Mi", "Fa2", "FaD2", "Sol2", "SolD2", "La2", "LaD2", "Si2", "Do2", "DoD2", "Re2", "ReD2", "Mi2")
@@ -37,6 +41,8 @@ class Notes(val x:Int, val y:Int, val pX:Int, val pY:Int){
     override fun toString(): String {
         return note
     }
+
+
 
 }
 

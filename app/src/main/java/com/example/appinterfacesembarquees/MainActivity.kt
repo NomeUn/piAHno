@@ -1,24 +1,29 @@
 package com.example.appinterfacesembarquees
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.media.MediaPlayer
+import android.media.MediaRecorder
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import java.lang.Thread.sleep
 import kotlinx.coroutines.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
 
     lateinit var ivPiano: ImageView
     lateinit var ivFa1: ImageView
+    lateinit var ivFaD1:ImageView
     lateinit var ivSol1: ImageView
     lateinit var ivLa1: ImageView
     lateinit var ivSi1: ImageView
@@ -34,6 +39,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var ivMi2: ImageView
     lateinit var tvX: TextView
     lateinit var tvY: TextView
+    var recorder:MediaRecorder? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -44,6 +52,8 @@ class MainActivity : AppCompatActivity() {
 
         ivFa1 = findViewById<ImageView>(R.id.ivFa1)
         ivFa1.visibility = View.INVISIBLE
+        ivFaD1 = findViewById<ImageView>(R.id.ivFaD1)
+        ivFaD1.visibility = View.INVISIBLE
         ivSol1 = findViewById<ImageView>(R.id.ivSol1)
         ivSol1.visibility = View.INVISIBLE
         ivLa1 = findViewById<ImageView>(R.id.ivLa1)
@@ -72,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         ivMi2.visibility = View.INVISIBLE
 
 
+
        ivPiano.setOnTouchListener {
                 _, event ->
             handleTouch(event)
@@ -87,6 +98,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun handleTouch(m: MotionEvent) {
         val pointerCount = m.pointerCount
 
@@ -98,10 +111,12 @@ class MainActivity : AppCompatActivity() {
                 val pY = ivPiano.height.toInt()
 
                 //var note = (x.toInt()) * 14 / (ivPiano.width.toInt())
-                var note = (x, y, pX, pY)
+                var note = Notes(x, y, pX, pY)
+                //Toast.makeText(this, note.toString(), Toast.LENGTH_SHORT).show()
+
                 if (id == 0) {
-                    var nomNote = Notes(note).toString()
-                    when (nomNote) {
+                    //var nomNote = Notes(note).toString()
+                    when (note.toString()) {
                         "Fa" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
                             mediaPlayer.start()
@@ -112,6 +127,16 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
+                        "FaD" ->{
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
+                            mediaPlayer.start()
+                            ivFaD1.visibility = View.VISIBLE
+                            GlobalScope.launch {
+                                delay(100L)
+                                ivFaD1.visibility = View.INVISIBLE
+                            }
+                        }
+
                         "Sol" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.sol1)
                             mediaPlayer.start()
@@ -241,10 +266,10 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 } else if (id == 1) {
-                    tvY.text = note.toString()
+                    /*tvY.text = note.toString()
                     var nomNote = Notes(note).toString()
-                    tvX.text = Notes(note).toString()
-                    when (nomNote) {
+                    tvX.text = Notes(note).toString()*/
+                    when (note.toString()) {
                         "Fa" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
                             mediaPlayer.start()
@@ -383,10 +408,10 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 } else if (id == 2) {
-                    tvY.text = note.toString()
+                    /*tvY.text = note.toString()
                     var nomNote = Notes(note).toString()
-                    tvX.text = Notes(note).toString()
-                    when (nomNote) {
+                    tvX.text = Notes(note).toString()*/
+                    when (note.toString()) {
                         "Fa" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
                             mediaPlayer.start()
