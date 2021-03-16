@@ -1,22 +1,14 @@
 package com.example.appinterfacesembarquees
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import java.lang.Thread.sleep
 import kotlinx.coroutines.*
-import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -111,14 +103,16 @@ class MainActivity : AppCompatActivity() {
                 val pY = ivPiano.height.toInt()
 
                 //var note = (x.toInt()) * 14 / (ivPiano.width.toInt())
-                var note = Notes(x, y, pX, pY)
+                var note = Notes(x, y, pX, pY, applicationContext)
                 //Toast.makeText(this, note.toString(), Toast.LENGTH_SHORT).show()
-
+                note.play()
+                //if ()
+                /*
                 if (id == 0) {
                     //var nomNote = Notes(note).toString()
                     when (note.toString()) {
-                        "Fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
+                        "fa" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa)
                             mediaPlayer.start()
                             ivFa1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -127,8 +121,8 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "FaD" ->{
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
+                        "fad" ->{
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fad)
                             mediaPlayer.start()
                             ivFaD1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -137,8 +131,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
 
-                        "Sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol1)
+                        "sol" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
                             mediaPlayer.start()
                             ivSol1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -146,8 +140,8 @@ class MainActivity : AppCompatActivity() {
                                 ivSol1.visibility = View.INVISIBLE
                             }
                         }
-                        "La" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.la1)
+                        "la" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
                             mediaPlayer.start()
                             ivLa1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -155,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                                 ivLa1.visibility = View.INVISIBLE
                             }
                         }
-                        "Si" -> {
+                        "si" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
                             mediaPlayer.start()
                             ivSi1.visibility = View.VISIBLE
@@ -165,7 +159,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Do" -> {
+                        "do" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
                             mediaPlayer.start()
                             ivDo1.visibility = View.VISIBLE
@@ -175,7 +169,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Re" -> {
+                        "re" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
                             mediaPlayer.start()
                             ivRe1.visibility = View.VISIBLE
@@ -185,7 +179,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Mi" -> {
+                        "mi" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
                             mediaPlayer.start()
                             ivMi1.visibility = View.VISIBLE
@@ -194,7 +188,7 @@ class MainActivity : AppCompatActivity() {
                                 ivMi1.visibility = View.INVISIBLE
                             }
                         }
-                        "Fa2" -> {
+                        "fa2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
                             mediaPlayer.start()
                             ivFa2.visibility = View.VISIBLE
@@ -203,7 +197,7 @@ class MainActivity : AppCompatActivity() {
                                 ivFa2.visibility = View.INVISIBLE
                             }
                         }
-                        "Sol2" -> {
+                        "sol2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
                             mediaPlayer.start()
                             ivSol2.visibility = View.VISIBLE
@@ -212,7 +206,7 @@ class MainActivity : AppCompatActivity() {
                                 ivSol2.visibility = View.INVISIBLE
                             }
                         }
-                        "La2" -> {
+                        "la2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
                             mediaPlayer.start()
                             ivLa2.visibility = View.VISIBLE
@@ -221,7 +215,7 @@ class MainActivity : AppCompatActivity() {
                                 ivLa2.visibility = View.INVISIBLE
                             }
                         }
-                        "Si2" -> {
+                        "si2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
                             mediaPlayer.start()
                             ivSi2.visibility = View.VISIBLE
@@ -231,7 +225,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Do2" -> {
+                        "do2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
                             mediaPlayer.start()
                             ivDo2.visibility = View.VISIBLE
@@ -241,7 +235,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Re2" -> {
+                        "re2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
                             mediaPlayer.start()
                             ivRe2.visibility = View.VISIBLE
@@ -251,7 +245,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Mi2" -> {
+                        "mi2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
                             mediaPlayer.start()
                             ivMi2.visibility = View.VISIBLE
@@ -270,8 +264,8 @@ class MainActivity : AppCompatActivity() {
                     var nomNote = Notes(note).toString()
                     tvX.text = Notes(note).toString()*/
                     when (note.toString()) {
-                        "Fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
+                        "fa" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa)
                             mediaPlayer.start()
                             ivFa1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -280,8 +274,18 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol1)
+                        "fad" ->{
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fad)
+                            mediaPlayer.start()
+                            ivFaD1.visibility = View.VISIBLE
+                            GlobalScope.launch {
+                                delay(100L)
+                                ivFaD1.visibility = View.INVISIBLE
+                            }
+                        }
+
+                        "sol" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
                             mediaPlayer.start()
                             ivSol1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -289,8 +293,8 @@ class MainActivity : AppCompatActivity() {
                                 ivSol1.visibility = View.INVISIBLE
                             }
                         }
-                        "La" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.la1)
+                        "la" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
                             mediaPlayer.start()
                             ivLa1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -298,7 +302,7 @@ class MainActivity : AppCompatActivity() {
                                 ivLa1.visibility = View.INVISIBLE
                             }
                         }
-                        "Si" -> {
+                        "si" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
                             mediaPlayer.start()
                             ivSi1.visibility = View.VISIBLE
@@ -308,7 +312,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Do" -> {
+                        "do" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
                             mediaPlayer.start()
                             ivDo1.visibility = View.VISIBLE
@@ -318,7 +322,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Re" -> {
+                        "re" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
                             mediaPlayer.start()
                             ivRe1.visibility = View.VISIBLE
@@ -328,7 +332,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Mi" -> {
+                        "mi" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
                             mediaPlayer.start()
                             ivMi1.visibility = View.VISIBLE
@@ -337,7 +341,7 @@ class MainActivity : AppCompatActivity() {
                                 ivMi1.visibility = View.INVISIBLE
                             }
                         }
-                        "Fa2" -> {
+                        "fa2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
                             mediaPlayer.start()
                             ivFa2.visibility = View.VISIBLE
@@ -346,7 +350,7 @@ class MainActivity : AppCompatActivity() {
                                 ivFa2.visibility = View.INVISIBLE
                             }
                         }
-                        "Sol2" -> {
+                        "sol2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
                             mediaPlayer.start()
                             ivSol2.visibility = View.VISIBLE
@@ -355,7 +359,7 @@ class MainActivity : AppCompatActivity() {
                                 ivSol2.visibility = View.INVISIBLE
                             }
                         }
-                        "La2" -> {
+                        "la2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
                             mediaPlayer.start()
                             ivLa2.visibility = View.VISIBLE
@@ -364,7 +368,7 @@ class MainActivity : AppCompatActivity() {
                                 ivLa2.visibility = View.INVISIBLE
                             }
                         }
-                        "Si2" -> {
+                        "si2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
                             mediaPlayer.start()
                             ivSi2.visibility = View.VISIBLE
@@ -374,7 +378,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Do2" -> {
+                        "do2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
                             mediaPlayer.start()
                             ivDo2.visibility = View.VISIBLE
@@ -384,7 +388,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Re2" -> {
+                        "re2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
                             mediaPlayer.start()
                             ivRe2.visibility = View.VISIBLE
@@ -394,7 +398,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Mi2" -> {
+                        "mi2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
                             mediaPlayer.start()
                             ivMi2.visibility = View.VISIBLE
@@ -412,8 +416,8 @@ class MainActivity : AppCompatActivity() {
                     var nomNote = Notes(note).toString()
                     tvX.text = Notes(note).toString()*/
                     when (note.toString()) {
-                        "Fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa1)
+                        "fa" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa)
                             mediaPlayer.start()
                             ivFa1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -422,8 +426,18 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol1)
+                        "fad" ->{
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.fad)
+                            mediaPlayer.start()
+                            ivFaD1.visibility = View.VISIBLE
+                            GlobalScope.launch {
+                                delay(100L)
+                                ivFaD1.visibility = View.INVISIBLE
+                            }
+                        }
+
+                        "sol" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
                             mediaPlayer.start()
                             ivSol1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -431,8 +445,8 @@ class MainActivity : AppCompatActivity() {
                                 ivSol1.visibility = View.INVISIBLE
                             }
                         }
-                        "La" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.la1)
+                        "la" -> {
+                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
                             mediaPlayer.start()
                             ivLa1.visibility = View.VISIBLE
                             GlobalScope.launch {
@@ -440,7 +454,7 @@ class MainActivity : AppCompatActivity() {
                                 ivLa1.visibility = View.INVISIBLE
                             }
                         }
-                        "Si" -> {
+                        "si" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
                             mediaPlayer.start()
                             ivSi1.visibility = View.VISIBLE
@@ -450,7 +464,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Do" -> {
+                        "do" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
                             mediaPlayer.start()
                             ivDo1.visibility = View.VISIBLE
@@ -460,7 +474,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Re" -> {
+                        "re" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
                             mediaPlayer.start()
                             ivRe1.visibility = View.VISIBLE
@@ -470,7 +484,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Mi" -> {
+                        "mi" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
                             mediaPlayer.start()
                             ivMi1.visibility = View.VISIBLE
@@ -479,7 +493,7 @@ class MainActivity : AppCompatActivity() {
                                 ivMi1.visibility = View.INVISIBLE
                             }
                         }
-                        "Fa2" -> {
+                        "fa2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
                             mediaPlayer.start()
                             ivFa2.visibility = View.VISIBLE
@@ -488,7 +502,7 @@ class MainActivity : AppCompatActivity() {
                                 ivFa2.visibility = View.INVISIBLE
                             }
                         }
-                        "Sol2" -> {
+                        "sol2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
                             mediaPlayer.start()
                             ivSol2.visibility = View.VISIBLE
@@ -497,7 +511,7 @@ class MainActivity : AppCompatActivity() {
                                 ivSol2.visibility = View.INVISIBLE
                             }
                         }
-                        "La2" -> {
+                        "la2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
                             mediaPlayer.start()
                             ivLa2.visibility = View.VISIBLE
@@ -506,7 +520,7 @@ class MainActivity : AppCompatActivity() {
                                 ivLa2.visibility = View.INVISIBLE
                             }
                         }
-                        "Si2" -> {
+                        "si2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
                             mediaPlayer.start()
                             ivSi2.visibility = View.VISIBLE
@@ -516,7 +530,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Do2" -> {
+                        "do2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
                             mediaPlayer.start()
                             ivDo2.visibility = View.VISIBLE
@@ -526,7 +540,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Re2" -> {
+                        "re2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
                             mediaPlayer.start()
                             ivRe2.visibility = View.VISIBLE
@@ -536,7 +550,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        "Mi2" -> {
+                        "mi2" -> {
                             var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
                             mediaPlayer.start()
                             ivMi2.visibility = View.VISIBLE
@@ -546,7 +560,7 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
-                }
+                }*/
             }
     }
 
