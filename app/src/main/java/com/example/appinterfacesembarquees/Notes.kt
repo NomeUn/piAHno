@@ -4,12 +4,18 @@ import android.content.ContentResolver
 import android.content.Context
 import android.media.MediaPlayer
 import android.net.Uri
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
 
 
-class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext: Context){
+class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext: Context, list: List<ImageView>){
     val notes = arrayOf("fa", "fad", "sol", "sold", "la", "lad", "si", "do", "dod", "re", "red", "mi", "fa2", "fad2", "sol2", "sold2", "la2", "lad2", "si2", "do2", "dod2", "re2", "red2", "mi2")
+    val listeView = list
     var note = ""
     var context = applicationContext
 
@@ -50,11 +56,16 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
         try {
             var mediaPlayer = MediaPlayer.create(context, Uri.parse("android.resource://com.example.appinterfacesembarquees/raw/" + note))
             mediaPlayer.start()
+            var noteView = listeView[notes.indexOf(note)]
+            noteView.visibility = View.VISIBLE
+            GlobalScope.launch {
+                delay(100L)
+                noteView.visibility = View.INVISIBLE
+            }
 
         }catch (e: Exception){
 
         }
-        //Toast.makeText(context, Uri.parse("android.resource://com.example.appinterfacesembarquees/raw/" + note).toString(), Toast.LENGTH_LONG).show()
 
     }
 

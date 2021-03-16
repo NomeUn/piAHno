@@ -31,18 +31,30 @@ class MainActivity : AppCompatActivity() {
     lateinit var ivFa1: ImageView
     lateinit var ivFaD1:ImageView
     lateinit var ivSol1: ImageView
+    lateinit var ivSolD1: ImageView
     lateinit var ivLa1: ImageView
+    lateinit var ivLaD1: ImageView
     lateinit var ivSi1: ImageView
     lateinit var ivDo1: ImageView
+    lateinit var ivDoD1: ImageView
     lateinit var ivRe1: ImageView
+    lateinit var ivReD1: ImageView
     lateinit var ivMi1: ImageView
     lateinit var ivFa2: ImageView
+    lateinit var ivFaD2:ImageView
     lateinit var ivSol2: ImageView
+    lateinit var ivSolD2: ImageView
     lateinit var ivLa2: ImageView
+    lateinit var ivLaD2: ImageView
     lateinit var ivSi2: ImageView
     lateinit var ivDo2: ImageView
+    lateinit var ivDoD2: ImageView
     lateinit var ivRe2: ImageView
+    lateinit var ivReD2: ImageView
     lateinit var ivMi2: ImageView
+
+    lateinit var tab: List<ImageView>
+
     lateinit var tvX: TextView
     lateinit var tvY: TextView
     lateinit var btnRec: Button
@@ -97,35 +109,56 @@ class MainActivity : AppCompatActivity() {
         ivFaD1.visibility = View.INVISIBLE
         ivSol1 = findViewById<ImageView>(R.id.ivSol1)
         ivSol1.visibility = View.INVISIBLE
+        ivSolD1 = findViewById<ImageView>(R.id.ivSolD1)
+        ivSolD1.visibility = View.INVISIBLE
         ivLa1 = findViewById<ImageView>(R.id.ivLa1)
         ivLa1.visibility = View.INVISIBLE
+        ivLaD1 = findViewById<ImageView>(R.id.ivLaD1)
+        ivLaD1.visibility = View.INVISIBLE
         ivSi1 = findViewById<ImageView>(R.id.ivSi1)
         ivSi1.visibility = View.INVISIBLE
         ivDo1 = findViewById<ImageView>(R.id.ivDo1)
         ivDo1.visibility = View.INVISIBLE
+        ivDoD1 = findViewById<ImageView>(R.id.ivDoD1)
+        ivDoD1.visibility = View.INVISIBLE
         ivRe1 = findViewById<ImageView>(R.id.ivRe1)
         ivRe1.visibility = View.INVISIBLE
+        ivReD1 = findViewById<ImageView>(R.id.ivReD1)
+        ivReD1.visibility = View.INVISIBLE
         ivMi1 = findViewById<ImageView>(R.id.ivMi1)
         ivMi1.visibility = View.INVISIBLE
         ivFa2 = findViewById<ImageView>(R.id.ivFa2)
         ivFa2.visibility = View.INVISIBLE
+        ivFaD2 = findViewById<ImageView>(R.id.ivFaD2)
+        ivFaD2.visibility = View.INVISIBLE
         ivSol2 = findViewById<ImageView>(R.id.ivSol2)
         ivSol2.visibility = View.INVISIBLE
+        ivSolD2 = findViewById<ImageView>(R.id.ivSolD2)
+        ivSolD2.visibility = View.INVISIBLE
         ivLa2 = findViewById<ImageView>(R.id.ivLa2)
         ivLa2.visibility = View.INVISIBLE
+        ivLaD2 = findViewById<ImageView>(R.id.ivLaD2)
+        ivLaD2.visibility = View.INVISIBLE
         ivSi2 = findViewById<ImageView>(R.id.ivSi2)
         ivSi2.visibility = View.INVISIBLE
         ivDo2 = findViewById<ImageView>(R.id.ivDo2)
         ivDo2.visibility = View.INVISIBLE
+        ivDoD2 = findViewById<ImageView>(R.id.ivDoD2)
+        ivDoD2.visibility = View.INVISIBLE
         ivRe2 = findViewById<ImageView>(R.id.ivRe2)
         ivRe2.visibility = View.INVISIBLE
+        ivReD2 = findViewById<ImageView>(R.id.ivReD2)
+        ivReD2.visibility = View.INVISIBLE
         ivMi2 = findViewById<ImageView>(R.id.ivMi2)
         ivMi2.visibility = View.INVISIBLE
+
+
+        tab = listOf<ImageView>(ivFa1,ivFaD1,ivSol1,ivSolD1,ivLa1,ivLaD1,ivSi1,ivDo1,ivDoD1,ivRe1,ivReD1,ivMi1,ivFa2,ivFaD2,ivSol2,ivSolD2,ivLa2,ivLaD2,ivSi2,ivDo2,ivDoD2,ivRe2,ivReD2,ivMi2)
 
         btnRec = findViewById<Button>(R.id.btnRec)
         var mStartRecording = true
 
-       ivPiano.setOnTouchListener {
+        ivPiano.setOnTouchListener {
                 _, event ->
             handleTouch(event)
             true
@@ -135,8 +168,8 @@ class MainActivity : AppCompatActivity() {
                 _, ->
 
             if (ContextCompat.checkSelfPermission(this,
-                            android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
-                            android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 ActivityCompat.requestPermissions(this, permissions,0)
             }else{
@@ -150,7 +183,7 @@ class MainActivity : AppCompatActivity() {
         val spinner = findViewById<Spinner>(R.id.spnInstru)
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
-                    android.R.layout.simple_spinner_item, instruments)
+                android.R.layout.simple_spinner_item, instruments)
             spinner.adapter = adapter
         }
     }
@@ -159,475 +192,23 @@ class MainActivity : AppCompatActivity() {
     private fun handleTouch(m: MotionEvent) {
         val pointerCount = m.pointerCount
 
-            for (i in 0 until pointerCount) {
-                val x = m.getX(i).toInt()
-                val y = m.getY(i).toInt()
-                val id = m.getPointerId(i)
-                val pX = ivPiano.width.toInt()
-                val pY = ivPiano.height.toInt()
+        for (i in 0 until pointerCount) {
+            val x = m.getX(i).toInt()
+            val y = m.getY(i).toInt()
+            val id = m.getPointerId(i)
+            val pX = ivPiano.width
+            val pY = ivPiano.height
 
-                //var note = (x.toInt()) * 14 / (ivPiano.width.toInt())
-                var note = Notes(x, y, pX, pY, applicationContext)
-                //Toast.makeText(this, note.toString(), Toast.LENGTH_SHORT).show()
+            var note = Notes(x, y, pX, pY, applicationContext, tab)
+
+            if (id == 0) {
                 note.play()
-                //if ()
-
-                if (id == 0) {
-                    //var nomNote = Notes(note).toString()
-                    when (note.toString()) {
-                        "fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa)
-                            mediaPlayer.start()
-                            ivFa1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFa1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "fad" ->{
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fad)
-                            mediaPlayer.start()
-                            ivFaD1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFaD1.visibility = View.INVISIBLE
-                            }
-                        }
-
-                        "sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
-                            mediaPlayer.start()
-                            ivSol1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSol1.visibility = View.INVISIBLE
-                            }
-                        }
-                        "la" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
-                            mediaPlayer.start()
-                            ivLa1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivLa1.visibility = View.INVISIBLE
-                            }
-                        }
-                        /*"si" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
-                            mediaPlayer.start()
-                            ivSi1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSi1.visibility = View.INVISIBLE
-                            }
-
-                        }*/
-                        "do" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
-                            mediaPlayer.start()
-                            ivDo1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivDo1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "re" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
-                            mediaPlayer.start()
-                            ivRe1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivRe1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "mi" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
-                            mediaPlayer.start()
-                            ivMi1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivMi1.visibility = View.INVISIBLE
-                            }
-                        }
-                        "fa2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
-                            mediaPlayer.start()
-                            ivFa2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFa2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "sol2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
-                            mediaPlayer.start()
-                            ivSol2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSol2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "la2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
-                            mediaPlayer.start()
-                            ivLa2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivLa2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "si2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
-                            mediaPlayer.start()
-                            ivSi2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSi2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "do2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
-                            mediaPlayer.start()
-                            ivDo2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivDo2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "re2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
-                            mediaPlayer.start()
-                            ivRe2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivRe2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "mi2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
-                            mediaPlayer.start()
-                            ivMi2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivMi2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        else -> {
-                        }
-                    }
-
-                } else if (id == 1) {
-                    /*tvY.text = note.toString()
-                    var nomNote = Notes(note).toString()
-                    tvX.text = Notes(note).toString()*/
-                    when (note.toString()) {
-                        "fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa)
-                            mediaPlayer.start()
-                            ivFa1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFa1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "fad" ->{
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fad)
-                            mediaPlayer.start()
-                            ivFaD1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFaD1.visibility = View.INVISIBLE
-                            }
-                        }
-
-                        "sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
-                            mediaPlayer.start()
-                            ivSol1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSol1.visibility = View.INVISIBLE
-                            }
-                        }
-                        "la" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
-                            mediaPlayer.start()
-                            ivLa1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivLa1.visibility = View.INVISIBLE
-                            }
-                        }
-                        /*"si" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
-                            mediaPlayer.start()
-                            ivSi1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSi1.visibility = View.INVISIBLE
-                            }
-
-                        }*/
-                        "do" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
-                            mediaPlayer.start()
-                            ivDo1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivDo1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "re" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
-                            mediaPlayer.start()
-                            ivRe1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivRe1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "mi" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
-                            mediaPlayer.start()
-                            ivMi1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivMi1.visibility = View.INVISIBLE
-                            }
-                        }
-                        "fa2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
-                            mediaPlayer.start()
-                            ivFa2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFa2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "sol2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
-                            mediaPlayer.start()
-                            ivSol2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSol2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "la2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
-                            mediaPlayer.start()
-                            ivLa2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivLa2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "si2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
-                            mediaPlayer.start()
-                            ivSi2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSi2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "do2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
-                            mediaPlayer.start()
-                            ivDo2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivDo2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "re2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
-                            mediaPlayer.start()
-                            ivRe2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivRe2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "mi2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
-                            mediaPlayer.start()
-                            ivMi2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivMi2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        else -> {
-                        }
-                    }
-                } else if (id == 2) {
-                    /*tvY.text = note.toString()
-                    var nomNote = Notes(note).toString()
-                    tvX.text = Notes(note).toString()*/
-                    when (note.toString()) {
-                        "fa" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa)
-                            mediaPlayer.start()
-                            ivFa1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFa1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "fad" ->{
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fad)
-                            mediaPlayer.start()
-                            ivFaD1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFaD1.visibility = View.INVISIBLE
-                            }
-                        }
-
-                        "sol" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
-                            mediaPlayer.start()
-                            ivSol1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSol1.visibility = View.INVISIBLE
-                            }
-                        }
-                        "la" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol)
-                            mediaPlayer.start()
-                            ivLa1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivLa1.visibility = View.INVISIBLE
-                            }
-                        }
-                        /*"si" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.si1)
-                            mediaPlayer.start()
-                            ivSi1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSi1.visibility = View.INVISIBLE
-                            }
-
-                        }*/
-                        "do" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.do1)
-                            mediaPlayer.start()
-                            ivDo1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivDo1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "re" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.re1)
-                            mediaPlayer.start()
-                            ivRe1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivRe1.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "mi" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi1)
-                            mediaPlayer.start()
-                            ivMi1.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivMi1.visibility = View.INVISIBLE
-                            }
-                        }
-                        "fa2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.fa2)
-                            mediaPlayer.start()
-                            ivFa2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivFa2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "sol2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.sol2)
-                            mediaPlayer.start()
-                            ivSol2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSol2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "la2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.la2)
-                            mediaPlayer.start()
-                            ivLa2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivLa2.visibility = View.INVISIBLE
-                            }
-                        }
-                        "si2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.si2)
-                            mediaPlayer.start()
-                            ivSi2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivSi2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "do2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.do2)
-                            mediaPlayer.start()
-                            ivDo2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivDo2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "re2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.re2)
-                            mediaPlayer.start()
-                            ivRe2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivRe2.visibility = View.INVISIBLE
-                            }
-
-                        }
-                        "mi2" -> {
-                            var mediaPlayer = MediaPlayer.create(this, R.raw.mi2)
-                            mediaPlayer.start()
-                            ivMi2.visibility = View.VISIBLE
-                            GlobalScope.launch {
-                                delay(100L)
-                                ivMi2.visibility = View.INVISIBLE
-                            }
-                        }
-                    }
-                }
+            } else if (id == 1) {
+                note.play()
+            } else if (id == 2) {
+                note.play()
             }
+        }
     }
-
-
 }
 
