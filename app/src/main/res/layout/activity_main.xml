@@ -207,6 +207,17 @@
         app:layout_constraintTop_toBottomOf="@+id/ll1"
         app:srcCompat="@drawable/mi2"/>
 
+    <ImageView
+        android:id="@+id/ivFaD1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll1"
+        app:srcCompat="@drawable/fad1"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
