@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val metronome = findViewById<Button>(R.id.metronome)
+        val metronome = findViewById<ImageButton>(R.id.metronome)
         metronome.setOnClickListener {
             if (tempo == 0) {
                 Intent(this, Metronome::class.java).also {
