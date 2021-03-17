@@ -20,6 +20,9 @@ class Menu : AppCompatActivity() {
         val enregistrement = findViewById<Button>(R.id.enregistrement)
         enregistrement.setOnClickListener{
             Toast.makeText(this, "slt", Toast.LENGTH_SHORT).show()
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "file/"
+            startActivityForResult(intent, 0)
         }
 
         val paypal = findViewById<Button>(R.id.paypal)
