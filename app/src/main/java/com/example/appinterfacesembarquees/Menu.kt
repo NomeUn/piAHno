@@ -3,9 +3,11 @@ package com.example.appinterfacesembarquees
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
 
 class Menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +23,9 @@ class Menu : AppCompatActivity() {
         enregistrement.setOnClickListener{
             Toast.makeText(this, "slt", Toast.LENGTH_SHORT).show()
             val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "file/"
-            startActivityForResult(intent, 0)
+            val uri = Uri.parse("${externalCacheDir?.absolutePath}/")
+            intent.setDataAndType(uri, "*/*")
+            startActivity(Intent.createChooser(intent, "Open folder"))
         }
 
         val paypal = findViewById<Button>(R.id.paypal)

@@ -202,17 +202,17 @@ class MainActivity : AppCompatActivity() {
         var mStartRecording = true
 
         ivPiano.setOnTouchListener {
-                _, event ->
+            _, event ->
             handleTouch(event)
             true
         }
 
         btnRec.setOnClickListener{
-                _, ->
+            _, ->
 
             if (ContextCompat.checkSelfPermission(this,
-                    android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
+                            android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 ActivityCompat.requestPermissions(this, permissions,0)
             }else{
@@ -226,7 +226,7 @@ class MainActivity : AppCompatActivity() {
         val spinner = findViewById<Spinner>(R.id.spnInstru)
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, instruments)
+                    android.R.layout.simple_spinner_item, instruments)
             spinner.adapter = adapter
         }
     }
