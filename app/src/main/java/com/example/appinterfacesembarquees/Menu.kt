@@ -17,10 +17,13 @@ class Menu : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         val themes = resources.getStringArray(R.array.Themes)
         val theme = findViewById<Spinner>(R.id.spnTheme)
+        val defaut = intent.getIntExtra("theme", 0)
+        intent.removeExtra("theme")
         if (theme != null) {
             val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, themes)
             theme.adapter = adapter
             theme.onItemSelectedListener = this@Menu
+            theme.setSelection(defaut)
         }
 
         val enregistrement = findViewById<Button>(R.id.enregistrement)

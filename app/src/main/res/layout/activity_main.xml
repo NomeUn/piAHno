@@ -25,6 +25,10 @@
             android:scaleType="fitXY"
             app:srcCompat="@drawable/record"  />
 
+        <Spinner
+            android:id="@+id/spnInstru"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
         <ImageButton
             android:id="@+id/metronome"
@@ -32,12 +36,6 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/metronome" />
-
-        <Spinner
-            android:id="@+id/spnInstru"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
 
         <Button
             android:id="@+id/menu"

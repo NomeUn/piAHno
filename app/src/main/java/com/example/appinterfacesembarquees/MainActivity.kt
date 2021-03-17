@@ -70,6 +70,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     var tempo : Int = 0
     var timer = Timer()
 
+    var themePiano : Int = 0
+
     var instrument : Int = 0
 
     private fun onRecord(start: Boolean) = if (start) {
@@ -126,8 +128,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
         if(requestCode == 2 && resultCode == RESULT_OK){
             if(data != null){
-                var position = data.getIntExtra("theme", 0)
-                when(position){
+                themePiano = data.getIntExtra("theme", 0)
+                when(themePiano){
                     0 -> ivPiano.setImageResource(R.drawable.piano)
                     1 -> ivPiano.setImageResource(R.drawable.piano2)
                     2 -> ivPiano.setImageResource(R.drawable.themewin98)
@@ -171,6 +173,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val menu = findViewById<Button>(R.id.menu)
         menu.setOnClickListener {
             Intent(this, Menu::class.java).also {
+                it.putExtra("theme", themePiano)
                 startActivityForResult(it, 2)
             }
         }
