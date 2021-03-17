@@ -19,6 +19,7 @@ class Metronome : AppCompatActivity() {
         setContentView(R.layout.activity_metronome)
 
         val tempo = intent.getIntExtra("tempo", 60)
+        intent.removeExtra("tempo")
 
         val numberPicker = findViewById<NumberPicker>(R.id.numberPicker)
         if (numberPicker != null) {
