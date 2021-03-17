@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     lateinit var tvX: TextView
     lateinit var tvY: TextView
-    lateinit var btnRec: Button
+    lateinit var btnRec: ImageButton
     var recorder: MediaRecorder? = null
 
     var tempo : Int = 0
@@ -74,10 +74,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private fun onRecord(start: Boolean) = if (start) {
         startRecording()
-        btnRec.text = "STOP"
+        btnRec.setImageResource(R.drawable.stop)
     } else {
         stopRecording()
-        btnRec.text = "REC"
+        btnRec.setImageResource(R.drawable.record)
+
     }
 
 
@@ -228,7 +229,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         tab = listOf<ImageView>(ivFa1,ivFaD1,ivSol1,ivSolD1,ivLa1,ivLaD1,ivSi1,ivDo1,ivDoD1,ivRe1,ivReD1,ivMi1,ivFa2,ivFaD2,ivSol2,ivSolD2,ivLa2,ivLaD2,ivSi2,ivDo2,ivDoD2,ivRe2,ivReD2,ivMi2)
 
-        btnRec = findViewById<Button>(R.id.btnRec)
+        btnRec = findViewById<ImageButton>(R.id.btnRec)
         var mStartRecording = true
 
         ivPiano.setOnTouchListener {

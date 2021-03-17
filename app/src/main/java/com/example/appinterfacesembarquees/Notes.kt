@@ -18,6 +18,7 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
     val listeView = list
     var note = ""
     var context = applicationContext
+    val tab = listOf<String>("u","b")
 
     init {
 
@@ -52,9 +53,9 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
         return note
     }
 
-    fun play(){
+    fun play(instru: Int){
         try {
-            var mediaPlayer = MediaPlayer.create(context, Uri.parse("android.resource://com.example.appinterfacesembarquees/raw/" + note + "b"))
+            var mediaPlayer = MediaPlayer.create(context, Uri.parse("android.resource://com.example.appinterfacesembarquees/raw/" + note + tab[instru]))
             mediaPlayer.start()
             var noteView = listeView[notes.indexOf(note)]
             noteView.visibility = View.VISIBLE
@@ -68,11 +69,6 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
         }
 
     }
-
-
-
-
-
 
 }
 
