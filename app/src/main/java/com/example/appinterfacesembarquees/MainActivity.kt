@@ -49,6 +49,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnRec: Button
     var recorder: MediaRecorder? = null
 
+    var tempo : Int = 0
+    var timer = Timer()
+    var metronomeTimer = MetronomeTimerTask()
+
     private fun onRecord(start: Boolean) = if (start) {
         startRecording()
         btnRec.text = "STOP"
@@ -84,32 +88,36 @@ class MainActivity : AppCompatActivity() {
         recorder = null
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == RESULT_OK){
+            if (data != null) {
+                tempo = data.getIntExtra("tempo", 0)
+            }
+            if (tempo != null){
+                if(tempo != 0){
+                    var bpm : Long = (60000 / tempo).toLong()
+
+                    timer.schedule(metronomeTimer, 0,  bpm)
+                    metronomeTimer.context(this)
+                    //metronomeTimer.run()
+                    Toast.makeText(this, bpm.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        var tempo : Int = intent.getIntExtra("tempo", 0)
-        var timer = Timer()
-        var metronomeTimer = MetronomeTimerTask()
-
-        if(tempo != 0){
-            var bpm : Long = (60000 / tempo).toLong()
-
-            timer.schedule(metronomeTimer, 0,  bpm)
-            metronomeTimer.context(this)
-            //metronomeTimer.run()
-            Toast.makeText(this, bpm.toString(), Toast.LENGTH_SHORT).show()
-        }
-
-
 
         val metronome = findViewById<Button>(R.id.metronome)
         metronome.setOnClickListener {
             if (tempo == 0) {
                 Intent(this, Metronome::class.java).also {
                     it.putExtra("tempo", tempo)
-                    startActivity(it)
+                    startActivityForResult(it, 1)
                 }
             } else {
                 tempo = 0

@@ -32,10 +32,8 @@ class Metronome : AppCompatActivity() {
         valider.setOnClickListener{
             val text = "Le tempo est de " + numberPicker.value
             Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-            Intent(this, MainActivity::class.java).also {
-                it.putExtra("tempo", numberPicker.value)
-                startActivity(it)
-            }
+            setResult(RESULT_OK, intent.putExtra("tempo", numberPicker.value))
+            finish()
         }
     }
 }
