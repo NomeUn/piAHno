@@ -13,10 +13,12 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
             android:name=".Menu"
+            android:label="Menu"
             android:theme="@style/Theme.AppCompat.Light.Dialog">
         </activity>
         <activity
             android:name=".Metronome"
+            android:label="Métronome"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".MainActivity"
