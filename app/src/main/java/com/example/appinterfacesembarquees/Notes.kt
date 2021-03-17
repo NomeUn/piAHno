@@ -18,7 +18,7 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
     val listeView = list
     var note = ""
     var context = applicationContext
-    val tab = listOf<String>("u","b")
+    val tab = listOf<String>("u","b","e")
 
     init {
 
