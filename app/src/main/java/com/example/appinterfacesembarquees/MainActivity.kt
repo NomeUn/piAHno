@@ -121,6 +121,18 @@ class MainActivity : AppCompatActivity() {
             }
             metronome.setBackgroundColor(Color.RED)
         }
+        if(requestCode == 2 && resultCode == RESULT_OK){
+            if(data != null){
+                var position = data.getIntExtra("theme", 0)
+                when(position){
+                    0 -> ivPiano.setImageResource(R.drawable.piano)
+                    1 -> ivPiano.setImageResource(R.drawable.piano2)
+                    2 -> ivPiano.setImageResource(R.drawable.themewin98)
+                    3 -> ivPiano.setImageResource(R.drawable.themereverse)
+                    else -> ivPiano.setImageResource(R.drawable.piano)
+                }
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -131,7 +143,6 @@ class MainActivity : AppCompatActivity() {
         metronome = findViewById<ImageButton>(R.id.metronome)
         metronome.setBackgroundColor(Color.GRAY)
         metronome.setOnClickListener {
-            ivPiano.setImageResource(R.drawable.piano2)
             if (tempo == 0) {
                 Intent(this, Metronome::class.java).also {
                     it.putExtra("tempo", tempo)
@@ -154,7 +165,7 @@ class MainActivity : AppCompatActivity() {
         val menu = findViewById<Button>(R.id.menu)
         menu.setOnClickListener {
             Intent(this, Menu::class.java).also {
-                startActivity(it)
+                startActivityForResult(it, 2)
             }
         }
 

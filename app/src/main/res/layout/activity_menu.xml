@@ -17,14 +17,10 @@
         tools:layout_editor_absoluteX="105dp"
         tools:layout_editor_absoluteY="325dp" />
 
-    <Button
-        android:id="@+id/theme"
+    <Spinner
+        android:id="@+id/spnTheme"
         android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:text="Thèmes"
-        android:layout_margin="10dp"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="76dp" />
+        android:layout_height="50dp" />
 
     <Button
         android:id="@+id/paypal"

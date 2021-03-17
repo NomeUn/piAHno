@@ -10,6 +10,13 @@
         <item>UKULELE !!!</item>
     </string-array>
 
+    <string-array name="Themes">
+        <item>Classique</item>
+        <item>Dauphin</item>
+        <item>Windows 98</item>
+        <item>Reverse</item>
+    </string-array>
+
     <string name="lienDons">https://www.paypal.me/paymathisd</string>
     <string name="Paypal">https://www.paypal.me/doktity</string>
 </resources>
