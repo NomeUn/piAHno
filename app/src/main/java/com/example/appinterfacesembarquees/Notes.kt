@@ -54,7 +54,7 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
 
     fun play(){
         try {
-            var mediaPlayer = MediaPlayer.create(context, Uri.parse("android.resource://com.example.appinterfacesembarquees/raw/" + note))
+            var mediaPlayer = MediaPlayer.create(context, Uri.parse("android.resource://com.example.appinterfacesembarquees/raw/" + note + "b"))
             mediaPlayer.start()
             var noteView = listeView[notes.indexOf(note)]
             noteView.visibility = View.VISIBLE
