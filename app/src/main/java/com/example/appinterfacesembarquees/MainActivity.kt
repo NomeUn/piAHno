@@ -3,6 +3,7 @@ package com.example.appinterfacesembarquees
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.opengl.Visibility
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var ivRe2: ImageView
     lateinit var ivReD2: ImageView
     lateinit var ivMi2: ImageView
+    lateinit var metronome: ImageButton
 
     lateinit var tab: List<ImageView>
 
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity() {
                 timer.schedule(metronomeTimer, 0,  bpm)
                 //metronomeTimer.run()
             }
+            metronome.setBackgroundColor(Color.RED)
         }
     }
 
@@ -123,20 +126,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val metronome = findViewById<ImageButton>(R.id.metronome)
+        metronome = findViewById<ImageButton>(R.id.metronome)
+        metronome.setBackgroundColor(Color.GRAY)
         metronome.setOnClickListener {
             if (tempo == 0) {
                 Intent(this, Metronome::class.java).also {
                     it.putExtra("tempo", tempo)
                     startActivityForResult(it, 1)
                 }
+
             } else {
                 tempo = 0
                 timer.cancel()
                 timer.purge()
+
+                metronome.setBackgroundColor(Color.GRAY)
+
                 Toast.makeText(this, "Arrêt du métronome", Toast.LENGTH_SHORT).show()
             }
         }
+
+
 
         val menu = findViewById<Button>(R.id.menu)
         menu.setOnClickListener {
