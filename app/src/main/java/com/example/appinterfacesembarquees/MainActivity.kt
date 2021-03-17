@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
 
     var tempo : Int = 0
     var timer = Timer()
-    var metronomeTimer = MetronomeTimerTask()
 
     private fun onRecord(start: Boolean) = if (start) {
         startRecording()
@@ -107,15 +106,13 @@ class MainActivity : AppCompatActivity() {
             if (data != null) {
                 tempo = data.getIntExtra("tempo", 0)
             }
-            if (tempo != null){
-                if(tempo != 0){
-                    var bpm : Long = (60000 / tempo).toLong()
-
-                    timer.schedule(metronomeTimer, 0,  bpm)
-                    metronomeTimer.context(this)
-                    //metronomeTimer.run()
-                    Toast.makeText(this, bpm.toString(), Toast.LENGTH_SHORT).show()
-                }
+            if (tempo != null && tempo != 0){
+                var bpm : Long = (60000 / tempo).toLong()
+                var metronomeTimer = MetronomeTimerTask()
+                timer = Timer()
+                metronomeTimer.context(this)
+                timer.schedule(metronomeTimer, 0,  bpm)
+                //metronomeTimer.run()
             }
         }
     }
@@ -135,6 +132,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 tempo = 0
                 timer.cancel()
+                timer.purge()
                 Toast.makeText(this, "Arrêt du métronome", Toast.LENGTH_SHORT).show()
             }
         }
