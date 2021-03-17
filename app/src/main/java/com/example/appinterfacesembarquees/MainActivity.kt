@@ -30,7 +30,7 @@ private const val LOG_TAG = "AudioRecordTest"
 
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
     lateinit var ivPiano: ImageView
@@ -69,6 +69,8 @@ class MainActivity : AppCompatActivity() {
 
     var tempo : Int = 0
     var timer = Timer()
+
+    var instrument : Int = 0
 
     private fun onRecord(start: Boolean) = if (start) {
         startRecording()
@@ -129,6 +131,9 @@ class MainActivity : AppCompatActivity() {
                     1 -> ivPiano.setImageResource(R.drawable.piano2)
                     2 -> ivPiano.setImageResource(R.drawable.themewin98)
                     3 -> ivPiano.setImageResource(R.drawable.themereverse)
+                    4 -> ivPiano.setImageResource(R.drawable.themeshrek)
+                    5 -> ivPiano.setImageResource(R.drawable.themeshreknaruto)
+                    6 -> ivPiano.setImageResource(R.drawable.themeshrksorcerer)
                     else -> ivPiano.setImageResource(R.drawable.piano)
                 }
             }
@@ -250,9 +255,9 @@ class MainActivity : AppCompatActivity() {
         val instruments = resources.getStringArray(R.array.Instruments)
         val spinner = findViewById<Spinner>(R.id.spnInstru)
         if (spinner != null) {
-            val adapter = ArrayAdapter(this,
-                    android.R.layout.simple_spinner_item, instruments)
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, instruments)
             spinner.adapter = adapter
+            spinner.onItemSelectedListener = this@MainActivity
         }
     }
 
@@ -269,13 +274,21 @@ class MainActivity : AppCompatActivity() {
             var note = Notes(x, y, pX, pY, applicationContext, tab)
 
             if (id == 0) {
-                note.play()
+                note.play(instrument)
             } else if (id == 1) {
-                note.play()
+                note.play(instrument)
             } else if (id == 2) {
-                note.play()
+                note.play(instrument)
             }
         }
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        instrument = position
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        Toast.makeText(this, "Choisi frère", Toast.LENGTH_SHORT).show()
     }
 }
 
