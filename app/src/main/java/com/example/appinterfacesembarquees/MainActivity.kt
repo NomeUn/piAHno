@@ -1,16 +1,17 @@
 package com.example.appinterfacesembarquees
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -19,6 +20,7 @@ import kotlinx.coroutines.*
 import java.io.IOException
 import java.util.jar.Manifest
 
+import java.util.*
 
 private const val LOG_TAG = "AudioRecordTest"
 
@@ -100,6 +102,41 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var tempo : Int = intent.getIntExtra("tempo", 0)
+        var timer = Timer()
+        var metronomeTimer = MetronomeTimerTask()
+
+        if(tempo != 0){
+            var bpm : Long = (60000 / tempo).toLong()
+
+            timer.schedule(metronomeTimer, 0,  bpm)
+            metronomeTimer.context(this)
+            //metronomeTimer.run()
+            Toast.makeText(this, bpm.toString(), Toast.LENGTH_SHORT).show()
+        }
+
+
+
+        val metronome = findViewById<Button>(R.id.metronome)
+        metronome.setOnClickListener {
+            if (tempo == 0) {
+                Intent(this, Metronome::class.java).also {
+                    it.putExtra("tempo", tempo)
+                    startActivity(it)
+                }
+            } else {
+                tempo = 0
+                timer.cancel()
+                Toast.makeText(this, "Arrêt du métronome", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        val menu = findViewById<Button>(R.id.menu)
+        menu.setOnClickListener {
+            Intent(this, Menu::class.java).also {
+                startActivity(it)
+            }
+        }
 
         ivPiano = findViewById<ImageView>(R.id.ivPiano)
 
@@ -187,7 +224,6 @@ class MainActivity : AppCompatActivity() {
             spinner.adapter = adapter
         }
     }
-
 
     private fun handleTouch(m: MotionEvent) {
         val pointerCount = m.pointerCount
