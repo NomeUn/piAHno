@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.opengl.Visibility
@@ -13,6 +14,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
@@ -129,6 +131,7 @@ class MainActivity : AppCompatActivity() {
         metronome = findViewById<ImageButton>(R.id.metronome)
         metronome.setBackgroundColor(Color.GRAY)
         metronome.setOnClickListener {
+            ivPiano.setImageResource(R.drawable.piano2)
             if (tempo == 0) {
                 Intent(this, Metronome::class.java).also {
                     it.putExtra("tempo", tempo)
