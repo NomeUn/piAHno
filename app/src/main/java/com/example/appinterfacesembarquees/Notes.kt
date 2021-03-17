@@ -23,23 +23,23 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
 
         var num = x*14/pX
         note = when(num){
-            0 -> if (((y * 5 / pY) <= 2) && ((x * 7 / pX) >= 4)) notes[1] else notes[0]
-            1 -> if ((y * 5 / pY) <= 2) (if ((x * 7 / pX) <= 1) notes[1] else if ((x * 7 / pX) >= 4) notes[3] else notes[2]) else notes[2]
-            2 -> if ((y * 5 / pY) <= 2) (if ((x * 7 / pX) <= 1) notes[3] else if ((x * 7 / pX) >= 4) notes[5] else notes[4]) else notes[4]
-            3 -> if (((y * 5 / pY) <= 2) && ((x * 7 / pX) <= 1)) notes[5] else notes[6]
+            0 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 >= 4)) notes[1] else notes[0]
+            1 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) notes[1] else if ((x * 7 * 14 / pX) % 7 >= 4) notes[3] else notes[2]) else notes[2]
+            2 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) notes[3] else if ((x * 7 * 14 / pX) % 7 >= 4) notes[5] else notes[4]) else notes[4]
+            3 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 <= 1)) notes[5] else notes[6]
 
-            4 -> if (((y * 5 / pY) <= 2) && ((x * 7 / pX) >= 4)) notes[8] else notes[7]
-            5 -> if ((y * 5 / pY) <= 2) (if ((x * 7 / pX) <= 1) notes[8] else if ((x * 7 / pX) >= 4) notes[10] else notes[9]) else notes[9]
-            6 -> if (((y * 5 / pY) <= 2) && ((x * 7 / pX) <= 1)) notes[10] else notes[11]
+            4 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 >= 4)) notes[8] else notes[7]
+            5 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) notes[8] else if ((x * 7 * 14 / pX) % 7 >= 4) notes[10] else notes[9]) else notes[9]
+            6 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 <= 1)) notes[10] else notes[11]
 
-            7 -> if (((y * 5 / pY) <= 2) && ((x * 7 / pX) >= 4)) notes[13] else notes[12]
-            8 -> if ((y * 5 / pY) <= 2) (if ((x * 7 / pX) <= 1) notes[13] else if ((x * 7 / pX) >= 4) notes[15] else notes[14]) else notes[14]
-            9 -> if ((y * 5 / pY) <= 2) (if ((x * 7 / pX) <= 1) notes[15] else if ((x * 7 / pX) >= 4) notes[17] else notes[16]) else notes[16]
-            10 -> if (((y * 5 / pY) <= 2) && ((x * 7 / pX) <= 1)) notes[17] else notes[18]
+            7 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 >= 4)) notes[13] else notes[12]
+            8 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) notes[13] else if ((x * 7 * 14 / pX) % 7 >= 4) notes[15] else notes[14]) else notes[14]
+            9 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) notes[15] else if ((x * 7 * 14 / pX) % 7 >= 4) notes[17] else notes[16]) else notes[16]
+            10 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 <= 1)) notes[17] else notes[18]
 
-            11 -> if (((y * 5 / pY) <= 2) && ((x * 7 / pX) >= 4)) notes[20] else notes[19]
-            12 -> if ((y * 5 / pY) <= 2) (if ((x * 7 / pX) <= 1) notes[20] else if ((x * 7 / pX) >= 4) notes[22] else notes[21]) else notes[21]
-            13 -> if (((y * 5 / pY) <= 2) && ((x * 7 / pX) <= 1)) notes[22] else notes[23]
+            11 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 >= 4)) notes[20] else notes[19]
+            12 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) notes[20] else if ((x * 7 * 14 / pX) % 7 >= 4) notes[22] else notes[21]) else notes[21]
+            13 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 <= 1)) notes[22] else notes[23]
 
             else -> ""
         }
