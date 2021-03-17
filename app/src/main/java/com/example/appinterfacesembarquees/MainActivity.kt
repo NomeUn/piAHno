@@ -167,16 +167,14 @@ class MainActivity : AppCompatActivity() {
         btnRec = findViewById<Button>(R.id.btnRec)
 
 
-       ivPiano.setOnTouchListener {
-                _, event ->
+        ivPiano.setOnTouchListener {
+            _, event ->
             handleTouch(event)
             true
         }
 
         btnRec.setOnClickListener{
-                _, ->
-
-            var mStartRecording = true
+            _, ->
 
             if (ContextCompat.checkSelfPermission(this,
                             android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
