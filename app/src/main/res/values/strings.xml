@@ -2,12 +2,12 @@
     <string name="app_name">app interfaces embarquees</string>
 
     <string-array name="Instruments">
+        <item>Piano</item>
         <item>Ukulele</item>
+        <item>Banjo</item>
         <item>Ben</item>
         <item>Eric</item>
         <item>Mathis</item>
-        <item>Rien</item>
-        <item>Rien !!!</item>
     </string-array>
 
     <string-array name="Themes">
