@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     var instrument : Int = 0
 
+    // lance ou arrête l'enregistrement audio
     private fun onRecord(start: Boolean) = if (start) {
         startRecording()
         btnRec.setImageResource(R.drawable.stop)
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     }
 
-
+    // lance un enregistrement audio avec MediaRecorder
     private fun startRecording() {
         recorder = MediaRecorder().apply {
             var output = "${externalCacheDir?.absolutePath}/audiorecordtest.3gp" //Environment.getExternalStorageDirectory().absolutePath + "/recording.3gp"
@@ -103,6 +104,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    // arrête l'enregistrement et libère l'objet MediaRecorder
     private fun stopRecording() {
         recorder?.apply {
             stop()
@@ -242,20 +244,22 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             true
         }
 
+        // ajout d'un listener sur le bouton "rec"
         btnRec.setOnClickListener{
             _, ->
 
+            // on vérifie les autorisation pour l'enregistrement et les demande si non-présentes
             if (ContextCompat.checkSelfPermission(this,
                             android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
                             android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 ActivityCompat.requestPermissions(this, permissions,0)
             }else{
+                // on lance l'enregistrement
                 onRecord(mStartRecording)
             }
             mStartRecording = !mStartRecording
         }
-
 
         val instruments = resources.getStringArray(R.array.Instruments)
         val spinner = findViewById<Spinner>(R.id.spnInstru)
@@ -272,12 +276,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         for (i in 0 until pointerCount) {
             val x = m.getX(i).toInt()
             val y = m.getY(i).toInt()
-            val id = m.getPointerId(i)
+            val id = m.getPointerId(i) // permet de savoir quel est l'id du touché car plusieurs sont géré en même temps
             val pX = ivPiano.width
             val pY = ivPiano.height
 
             var note = Notes(x, y, pX, pY, applicationContext, tab)
 
+            // le if ci-dessous permet de lancer plusieurs sons selon les différents appui sans arrêter les autres
             if (id == 0) {
                 note.play(instrument)
             } else if (id == 1) {
