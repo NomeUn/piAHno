@@ -193,6 +193,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         }
 
+        /**récupération des imageView et mise en invisible*/
+
         ivPiano = findViewById<ImageView>(R.id.ivPiano)
 
         ivFa1 = findViewById<ImageView>(R.id.ivFa1)
@@ -250,6 +252,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         btnRec = findViewById<ImageButton>(R.id.btnRec)
         var mStartRecording = true
 
+        /**récupération du clique sur l'image du piano*/
         ivPiano.setOnTouchListener {
             _, event ->
             handleTouch(event)
@@ -284,17 +287,21 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    /**fonction pour géréer le multi-touch*/
     private fun handleTouch(m: MotionEvent) {
         val pointerCount = m.pointerCount
 
         for (i in 0 until pointerCount) {
+            /** permet de récupérer la position du goigt et la taille cu piano*/
             val x = m.getX(i).toInt()
             val y = m.getY(i).toInt()
-            /** permet de savoir quel est l'id du touché car plusieurs sont géré en même temps */
-            val id = m.getPointerId(i)
             val pX = ivPiano.width
             val pY = ivPiano.height
 
+            /** permet de savoir quel est l'id du touché car plusieurs sont géré en même temps */
+            val id = m.getPointerId(i)
+
+            /** on appelle la classe note avec les paramètres de la position du doigt sur le piano, la taille du piano, le context et le taleauy des imageView pour l'assombrissement des notes*/
             var note = Notes(x, y, pX, pY, applicationContext, tab)
 
             /** le if ci-dessous permet de lancer plusieurs sons selon les différents appui sans arrêter les autres */
