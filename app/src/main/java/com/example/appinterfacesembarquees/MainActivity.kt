@@ -172,7 +172,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
         menu = findViewById<ImageButton>(R.id.btnMenu)
-        menu.setBackgroundColor(Color.GRAY)
         menu.setOnClickListener {
             Intent(this, Menu::class.java).also {
                 it.putExtra("theme", themePiano)
