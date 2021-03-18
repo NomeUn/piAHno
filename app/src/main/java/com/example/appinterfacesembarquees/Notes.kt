@@ -55,9 +55,10 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
 
     fun play(instru: Int){
         try {
-            // création d'un MediaPlayer qui joue un fichier son en fonction de la note et de l'instrument
+            /** création d'un MediaPlayer qui joue un fichier son en fonction de la note et de l'instrument */
             var mediaPlayer = MediaPlayer.create(context, Uri.parse("android.resource://com.example.appinterfacesembarquees/raw/" + note + tab[instru]))
             mediaPlayer.start()
+            /** On release le mediaPlayer lorsque le son est fini */
             mediaPlayer.setOnCompletionListener { mediaPlayer ->
                 try {
                     mediaPlayer.release()

@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     var instrument : Int = 0
 
-    // lance ou arrête l'enregistrement audio
+    /** lance ou arrête l'enregistrement audio */
     private fun onRecord(start: Boolean) = if (start) {
         startRecording()
         btnRec.setImageResource(R.drawable.stop)
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     }
 
-    // lance un enregistrement audio avec MediaRecorder
+    /** lance un enregistrement audio avec MediaRecorder */
     private fun startRecording() {
         recorder = MediaRecorder().apply {
             var output = "${externalCacheDir?.absolutePath}/audiorecordtest.3gp" //Environment.getExternalStorageDirectory().absolutePath + "/recording.3gp"
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    // arrête l'enregistrement et libère l'objet MediaRecorder
+    /** arrête l'enregistrement et libère l'objet MediaRecorder */
     private fun stopRecording() {
         recorder?.apply {
             stop()
@@ -113,13 +113,20 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         recorder = null
     }
 
+    /** Fonction qui se lance quand un résultat est obtenu après la fin d'un intent
+     * le request code est un numéro qu'on donne pour spécifier la variable qu'on veut avoir
+     * Le result code est la pour s'assurer que la variable est passée
+     * le data contient toutes les variables qu'on a envoyé avec intent */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        /** On prend le tempo ici */
         if (requestCode == 1 && resultCode == RESULT_OK){
             if (data != null) {
                 tempo = data.getIntExtra("tempo", 0)
             }
             if (tempo != null && tempo != 0){
+                /** Création du timer avec la tempo */
                 var bpm : Long = (60000 / tempo).toLong()
                 var metronomeTimer = MetronomeTimerTask()
                 timer = Timer()
@@ -129,10 +136,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
             metronome.setBackgroundColor(Color.RED)
         }
+
+        /** On prend le theme ici */
         if(requestCode == 2 && resultCode == RESULT_OK){
             if(data != null){
                 themePiano = data.getIntExtra("theme", 0)
                 when(themePiano){
+                    /** Changement des thèmes */
                     0 -> ivPiano.setImageResource(R.drawable.piano)
                     1 -> ivPiano.setImageResource(R.drawable.piano2)
                     2 -> ivPiano.setImageResource(R.drawable.themewin98)
@@ -151,11 +161,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /** Controlleur sur le métronome */
         metronome = findViewById<ImageButton>(R.id.metronome)
         metronome.setBackgroundColor(Color.GRAY)
         metronome.setOnClickListener {
             if (tempo == 0) {
                 Intent(this, Metronome::class.java).also {
+                    /** startActivityForResult pour reprendre l'information sur le tempo */
                     it.putExtra("tempo", tempo)
                     startActivityForResult(it, 1)
                 }
@@ -171,11 +183,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         }
 
-
-
+        /** Controlleur sur le menu */
         menu = findViewById<ImageButton>(R.id.btnMenu)
         menu.setOnClickListener {
             Intent(this, Menu::class.java).also {
+                /** startActivityForResult pour reprendre l'information sur le theme */
                 it.putExtra("theme", themePiano)
                 startActivityForResult(it, 2)
             }
@@ -244,26 +256,28 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             true
         }
 
-        // ajout d'un listener sur le bouton "rec"
+        /** ajout d'un listener sur le bouton "rec" */
         btnRec.setOnClickListener{
             _, ->
 
-            // on vérifie les autorisation pour l'enregistrement et les demande si non-présentes
+            /** on vérifie les autorisation pour l'enregistrement et les demande si non-présentes */
             if (ContextCompat.checkSelfPermission(this,
                             android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
                             android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 ActivityCompat.requestPermissions(this, permissions,0)
             }else{
-                // on lance l'enregistrement
+                /** on lance l'enregistrement */
                 onRecord(mStartRecording)
             }
             mStartRecording = !mStartRecording
         }
 
+        /** Controlleur sur le spinner des instruments */
         val instruments = resources.getStringArray(R.array.Instruments)
         val spinner = findViewById<Spinner>(R.id.spnInstru)
         if (spinner != null) {
+            /** Création de l'adapteur pour le spinner */
             val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, instruments)
             spinner.adapter = adapter
             spinner.onItemSelectedListener = this@MainActivity
@@ -276,13 +290,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         for (i in 0 until pointerCount) {
             val x = m.getX(i).toInt()
             val y = m.getY(i).toInt()
-            val id = m.getPointerId(i) // permet de savoir quel est l'id du touché car plusieurs sont géré en même temps
+            /** permet de savoir quel est l'id du touché car plusieurs sont géré en même temps */
+            val id = m.getPointerId(i)
             val pX = ivPiano.width
             val pY = ivPiano.height
 
             var note = Notes(x, y, pX, pY, applicationContext, tab)
 
-            // le if ci-dessous permet de lancer plusieurs sons selon les différents appui sans arrêter les autres
+            /** le if ci-dessous permet de lancer plusieurs sons selon les différents appui sans arrêter les autres */
             if (id == 0) {
                 note.play(instrument)
             } else if (id == 1) {
@@ -293,10 +308,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    /** Fonction quand l'utilisateur sélectionne un instrument */
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         instrument = position
     }
 
+    /** Fonction quand l'utilisateur ne sélectionne pas de instrument */
     override fun onNothingSelected(parent: AdapterView<*>?) {
         Toast.makeText(this, "Choisi quelque chose", Toast.LENGTH_SHORT).show()
     }

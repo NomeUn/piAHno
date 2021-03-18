@@ -21,6 +21,7 @@ class Metronome : AppCompatActivity() {
         val tempo = intent.getIntExtra("tempo", 60)
         intent.removeExtra("tempo")
 
+        /** Controlleur sur le number picker */
         val numberPicker = findViewById<NumberPicker>(R.id.numberPicker)
         if (numberPicker != null) {
             numberPicker.minValue = 0
@@ -29,8 +30,10 @@ class Metronome : AppCompatActivity() {
             numberPicker.wrapSelectorWheel = true
         }
 
+        /** Controlleur sur le bouton valider */
         val valider = findViewById<Button>(R.id.valider)
         valider.setOnClickListener{
+            /** On passe l'information du theme via le intent qui avait permis d'ouvrir le menu du metronome */
             val text = "Le tempo est de " + numberPicker.value
             Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
             setResult(RESULT_OK, intent.putExtra("tempo", numberPicker.value))
