@@ -293,6 +293,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        Toast.makeText(this, "Choisi frère", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Choisi quelque chose", Toast.LENGTH_SHORT).show()
     }
 }
