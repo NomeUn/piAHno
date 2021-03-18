@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var ivReD2: ImageView
     lateinit var ivMi2: ImageView
     lateinit var metronome: ImageButton
+    lateinit var menu: ImageButton
 
     lateinit var tab: List<ImageView>
 
@@ -170,7 +171,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
 
-        val menu = findViewById<Button>(R.id.menu)
+        menu = findViewById<ImageButton>(R.id.btnMenu)
+        menu.setBackgroundColor(Color.GRAY)
         menu.setOnClickListener {
             Intent(this, Menu::class.java).also {
                 it.putExtra("theme", themePiano)
@@ -295,4 +297,3 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         Toast.makeText(this, "Choisi frère", Toast.LENGTH_SHORT).show()
     }
 }
-
