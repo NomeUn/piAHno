@@ -28,7 +28,6 @@ class Menu : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         val enregistrement = findViewById<Button>(R.id.enregistrement)
         enregistrement.setOnClickListener{
-            Toast.makeText(this, "slt", Toast.LENGTH_SHORT).show()
             val intent = Intent(Intent.ACTION_VIEW)
             intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
             val uri = Uri.parse("${externalCacheDir?.absoluteFile}/")
