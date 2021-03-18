@@ -57,6 +57,13 @@ class Notes(val x: Int, val y: Int, val pX: Int, val pY: Int, applicationContext
         try {
             var mediaPlayer = MediaPlayer.create(context, Uri.parse("android.resource://com.example.appinterfacesembarquees/raw/" + note + tab[instru]))
             mediaPlayer.start()
+            mediaPlayer.setOnCompletionListener { mediaPlayer ->
+                try {
+                    mediaPlayer.release()
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
+            }
             var noteView = listeView[notes.indexOf(note)]
             noteView.visibility = View.VISIBLE
             GlobalScope.launch {

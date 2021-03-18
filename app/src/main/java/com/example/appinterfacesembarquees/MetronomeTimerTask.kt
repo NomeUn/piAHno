@@ -2,6 +2,7 @@ package com.example.appinterfacesembarquees
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.view.View
 import java.util.*
 
 class MetronomeTimerTask : TimerTask() {
@@ -10,6 +11,14 @@ class MetronomeTimerTask : TimerTask() {
     override fun run() {
         var mediaPlayer = MediaPlayer.create(context, R.raw.woodblock)
         mediaPlayer.start()
+        mediaPlayer.setOnCompletionListener { mediaPlayer ->
+            try {
+                mediaPlayer.release()
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+        }
+        
     }
 
     fun context(ct: Context){
