@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">app interfaces embarquees</string>
+    <string name="app_name">piAHno</string>
 
     <string-array name="Instruments">
         <item>Piano</item>
