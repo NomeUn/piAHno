@@ -1,29 +1,22 @@
 package com.example.appinterfacesembarquees
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.media.MediaPlayer
 import android.media.MediaRecorder
-import android.opengl.Visibility
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.*
-import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.lang.Thread.sleep
+import androidx.core.view.MotionEventCompat
 import kotlinx.coroutines.*
 import java.io.IOException
-import java.util.jar.Manifest
-
 import java.util.*
 
 private const val LOG_TAG = "AudioRecordTest"
@@ -74,6 +67,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     var themePiano : Int = 0
 
     var instrument : Int = 0
+    var notePred : Int = 0
+    lateinit var tabNotes: Notes
 
     /** lance ou arrête l'enregistrement audio */
     private fun onRecord(start: Boolean) = if (start) {
@@ -131,7 +126,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 var metronomeTimer = MetronomeTimerTask()
                 timer = Timer()
                 metronomeTimer.context(this)
-                timer.schedule(metronomeTimer, 0,  bpm)
+                timer.schedule(metronomeTimer, 0, bpm)
                 //metronomeTimer.run()
             }
             metronome.setBackgroundColor(Color.RED)
@@ -247,28 +242,27 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         ivMi2.visibility = View.INVISIBLE
 
 
-        tab = listOf<ImageView>(ivFa1,ivFaD1,ivSol1,ivSolD1,ivLa1,ivLaD1,ivSi1,ivDo1,ivDoD1,ivRe1,ivReD1,ivMi1,ivFa2,ivFaD2,ivSol2,ivSolD2,ivLa2,ivLaD2,ivSi2,ivDo2,ivDoD2,ivRe2,ivReD2,ivMi2)
+        tab = listOf<ImageView>(ivFa1, ivFaD1, ivSol1, ivSolD1, ivLa1, ivLaD1, ivSi1, ivDo1, ivDoD1, ivRe1, ivReD1, ivMi1, ivFa2, ivFaD2, ivSol2, ivSolD2, ivLa2, ivLaD2, ivSi2, ivDo2, ivDoD2, ivRe2, ivReD2, ivMi2)
+        tabNotes = Notes(instrument, resources.getStringArray(R.array.Notes), applicationContext)
 
         btnRec = findViewById<ImageButton>(R.id.btnRec)
         var mStartRecording = true
 
         /**récupération du clique sur l'image du piano*/
-        ivPiano.setOnTouchListener {
-            _, event ->
+        ivPiano.setOnTouchListener { _, event ->
             handleTouch(event)
             true
         }
 
         /** ajout d'un listener sur le bouton "rec" */
-        btnRec.setOnClickListener{
-            _, ->
+        btnRec.setOnClickListener{ _ ->
 
             /** on vérifie les autorisation pour l'enregistrement et les demande si non-présentes */
             if (ContextCompat.checkSelfPermission(this,
                             android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
                             android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                ActivityCompat.requestPermissions(this, permissions,0)
+                ActivityCompat.requestPermissions(this, permissions, 0)
             }else{
                 /** on lance l'enregistrement */
                 onRecord(mStartRecording)
@@ -301,23 +295,65 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             /** permet de savoir quel est l'id du touché car plusieurs sont géré en même temps */
             val id = m.getPointerId(i)
 
-            /** on appelle la classe note avec les paramètres de la position du doigt sur le piano, la taille du piano, le context et le taleauy des imageView pour l'assombrissement des notes*/
-            var note = Notes(x, y, pX, pY, applicationContext, tab)
+            /**produit en croix pour connaître la note correspondante en fonction de la position de notre doigt sur l'image du piano*/
+            var num = x*14/pX
 
-            /** le if ci-dessous permet de lancer plusieurs sons selon les différents appui sans arrêter les autres */
-            if (id == 0) {
-                note.play(instrument)
-            } else if (id == 1) {
-                note.play(instrument)
-            } else if (id == 2) {
-                note.play(instrument)
+            /**calcul pour déterminer si la note sur laquelle on clique est une note noir ou non*/
+            var note = when(num){
+                0 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 >= 4)) 1 else 0
+                1 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) 1 else if ((x * 7 * 14 / pX) % 7 >= 4) 3 else 2) else 2
+                2 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) 3 else if ((x * 7 * 14 / pX) % 7 >= 4) 5 else 4) else 4
+                3 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 <= 1)) 5 else 6
+
+                4 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 >= 4)) 8 else 7
+                5 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) 8 else if ((x * 7 * 14 / pX) % 7 >= 4) 10 else 9) else 9
+                6 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 <= 1)) 10 else 11
+
+                7 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 >= 4)) 13 else 12
+                8 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) 13 else if ((x * 7 * 14 / pX) % 7 >= 4) 15 else 14) else 14
+                9 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) 15 else if ((x * 7 * 14 / pX) % 7 >= 4) 17 else 16) else 16
+                10 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 <= 1)) 17 else 18
+
+                11 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 >= 4)) 20 else 19
+                12 -> if ((y * 5 / pY) <= 2) (if ((x * 7 * 14 / pX) % 7 <= 1) 20 else if ((x * 7 * 14 / pX) % 7 >= 4) 22 else 21) else 21
+                13 -> if (((y * 5 / pY) <= 2) && ((x * 7 * 14 / pX) % 7 <= 1)) 22 else 23
+
+                else -> 100
             }
+
+            when(m.action){
+                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+                    /** le if ci-dessous permet de lancer plusieurs sons selon les différents appui sans arrêter les autres */
+                    tab[note].visibility = View.VISIBLE
+                    if(tabNotes.getBoolNotes()[note]){
+                        if (id == 0) {
+                            tabNotes.play(note)
+                        } else if (id == 1) {
+                            tabNotes.play(note)
+                        } else if (id == 2) {
+                            tabNotes.play(note)
+                        }
+                    }
+                    if(notePred != note){
+                        /**on affecte à la variable noteView l'imageView correspondant à la note choisie et on la rend visible pendant un certains laps de temps puis on la remet en invisible*/
+                        tab[notePred].visibility = View.INVISIBLE
+                        tabNotes.setBoolNotes(notePred, true)
+                    }
+                }
+                MotionEvent.ACTION_UP -> {
+                    /**on affecte à la variable noteView l'imageView correspondant à la note choisie et on la rend visible pendant un certains laps de temps puis on la remet en invisible*/
+                    tab[note].visibility = View.INVISIBLE
+                    tabNotes.setBoolNotes(note, true)
+                }
+            }
+            notePred = note
         }
     }
 
     /** Fonction quand l'utilisateur sélectionne un instrument */
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         instrument = position
+        tabNotes.changeInstrument(instrument)
     }
 
     /** Fonction quand l'utilisateur ne sélectionne pas de instrument */

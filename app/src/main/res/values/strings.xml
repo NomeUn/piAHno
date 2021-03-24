@@ -20,6 +20,33 @@
         <item>Shrek Sorcier</item>
     </string-array>
 
+    <string-array name="Notes">
+        <item>fa</item>
+        <item>fad</item>
+        <item>sol</item>
+        <item>sold</item>
+        <item>la</item>
+        <item>lad</item>
+        <item>si</item>
+        <item>do</item>
+        <item>dod</item>
+        <item>re</item>
+        <item>red</item>
+        <item>mi</item>
+        <item>fa2</item>
+        <item>fad2</item>
+        <item>sol2</item>
+        <item>sold2</item>
+        <item>la2</item>
+        <item>lad2</item>
+        <item>si2</item>
+        <item>do2</item>
+        <item>dod2</item>
+        <item>re2</item>
+        <item>red2</item>
+        <item>mi2</item>
+    </string-array>
+
     <string name="lienDons">https://www.paypal.me/paymathisd</string>
     <string name="Paypal">https://www.paypal.me/doktity</string>
 </resources>
